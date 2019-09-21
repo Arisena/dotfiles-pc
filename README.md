@@ -1,3 +1,3 @@
-# mah-stuff
+# Linux Config PC
 
-Backup of Linux config files and other stuff that I decide to put in here
+Configs and stuff more my desktop install of Arch Linux
