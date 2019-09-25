@@ -2,12 +2,12 @@
 
 games=( 'bald1' 'bald2' 'deadcells' 'dungeons2' 'gungeon' 'icon' 'neverwinter' 'stardew' )
 
-echo "--Options--"
+echo "---Options---"
 for element in "${games[@]}"
 do
     echo ": $element"
 done
-echo "-----------"
+echo "-------------"
 
 read -p "Game: " game
 lower=${game,,}
