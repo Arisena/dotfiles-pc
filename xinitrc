@@ -48,7 +48,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-case "$XS" in
+case $XS in
 	i3)
 		exec i3
 		;;
