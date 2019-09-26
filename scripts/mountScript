@@ -2,12 +2,12 @@
 
 mounttype=( 'physical' 'network' 'umount' )
 
-echo "--------"
+echo "----------"
 for element in "${mounttype[@]}"
 do
 	echo ": $element"
 done
-echo "--------"
+echo "----------"
 
 read -p "Type: " mtype
 lower=${mtype,,}
@@ -31,6 +31,5 @@ case $lower in
 		;;
 	*)
 		echo Input Error
-		echo 'Options : mountusb | mountnetwork | umount'
 		;;
 esac
