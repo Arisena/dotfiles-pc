@@ -98,7 +98,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3 updates
 ;modules-center = mpdRestart mpdPrev mpdBackward mpd mpdForward mpdNext mpdToggle
-modules-right = cpu memory
+modules-right = cpu memory date
 
 ;tray-position = right
 #tray-padding = 2
