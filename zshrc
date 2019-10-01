@@ -55,7 +55,8 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 
 ## Alias section
 alias cp="cp -i"                                                # Confirm before overwriting something
-alias cldown='sudo rm -r ~/Downloads && mkdir ~/Downloads'
+alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'
+alias cldown='rm -rf ~/build && mkdir ~/build'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
 alias term='XS=st startx'										# Start st
@@ -71,12 +72,14 @@ alias vpnstart='sudo protonvpn-cli -m'
 alias vpnstop='sudo protonvpn-cli -d'
 alias gitu='git add . && git commit && git push'
 
-# Theming section
-autoload -U compinit colors zcalc
+autoload -U compinit colors
 compinit -d
 colors
+# Theming section
 autoload -Uz promptinit
 promptinit
+
+fpath=("$HOME/.zprompts" "$fpath[@]")
 
 # enable substitution for prompt
 setopt prompt_subst
@@ -86,9 +89,9 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n: %1~]%{$reset_color%}# .%{$fg[cyan]%}[%n: %1~]%{$reset_color%}$ "
 # Maia prompt
- PROMPT="%B%{$fg[white]%}%(4~|%-1~/.../%2~|%~)%u%b>%{$fg[blue]%}>%B%(?.%{$fg[white]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
-ZSH_THEME="agnoster"
+# PROMPT="%B%{$fg[white]%}%(4~|%-1~/.../%2~|%~)%u%b>%{$fg[blue]%}>%B%(?.%{$fg[white]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
 # Print a greeting message when shell is started
+prompt agnoster
 echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
 #cowthink -e Oo $(fortune -ac)
 ##neofetch
