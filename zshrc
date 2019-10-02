@@ -56,7 +56,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 ## Alias section
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'
-alias cldown='rm -rf ~/build && mkdir ~/build'
+alias clbuild='rm -rf ~/build && mkdir ~/build'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
 alias term='XS=st startx'										# Start st
