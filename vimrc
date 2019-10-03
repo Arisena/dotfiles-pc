@@ -42,6 +42,8 @@ endif
 
 execute pathogen#infect()
 let g:airline_powerline_fonts = 1
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#ale#enabled = 1
 set updatetime=100
