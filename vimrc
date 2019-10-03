@@ -36,6 +36,10 @@ set backupskip=/tmp/*
 set directory=~/.vim-tmp
 set writebackup
 
+if has('nvim')
+	set rtp^=/usr/share/vim/vimfiles/
+endif
+
 execute pathogen#infect()
 let g:airline_powerline_fonts = 1
 set laststatus=2
