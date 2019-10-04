@@ -71,6 +71,7 @@ alias cowfort='cowthink -e Oo $(fortune -ac)'
 alias vpnstart='sudo protonvpn-cli -m'
 alias vpnstop='sudo protonvpn-cli -d'
 alias gitu='git add . && git commit && git push'
+alias vim='nvim'
 
 autoload -U compinit colors
 compinit -d
