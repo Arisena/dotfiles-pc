@@ -207,11 +207,12 @@ smart_borders on
 gaps top 37
 
 #Starts when i3 is opened
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec wallpaper
 exec numlockx
 exec glipper
 exec pasystray
+exec flameshot
 #exec gnome-encfs-manager
 exec compton
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh

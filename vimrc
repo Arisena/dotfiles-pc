@@ -1,7 +1,7 @@
 set background=dark
 set t_Co=16
 let g:solarized_termcolors=16
-colorscheme solarized
+"colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 
 syntax on
@@ -47,11 +47,14 @@ if has('nvim')
 	set rtp^=/usr/share/vim/vimfiles/
 endif
 
+
 execute pathogen#infect()
-let g:airline_powerline_fonts = 1
-let g:airline_solarized_bg='dark'
-let g:airline_powerline_fonts = 1
+set guifont=DroidSansMono\ Nerd\ Font\ 12
 set laststatus=2
-let g:airline#extensions#ale#enabled = 1
 set updatetime=100
 let g:indent_guides_enable_on_vim_startup = 1
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
+let g:airline_extensions = ['branch', 'tabline']
