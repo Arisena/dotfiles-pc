@@ -37,11 +37,11 @@ set directory=~/.vim-tmp
 set writebackup
 
 "No line numbers in :te
-au TermOpen * setlocal nonumber norelativenumber
+"au TermOpen * setlocal nonumber norelativenumber
 "Auto enter term mode on open
-autocmd TermOpen * startinsert
+"autocmd TermOpen * startinsert
 "Auto enter term mode on switch
-autocmd BufWinEnter,WinEnter term://* startinsert
+"autocmd BufWinEnter,WinEnter term://* startinsert
 
 if has('nvim')
 	set rtp^=/usr/share/vim/vimfiles/
