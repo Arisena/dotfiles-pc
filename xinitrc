@@ -61,4 +61,13 @@ case $XS in
 	cata)
 		exec cataclysm-tiles
 		;;
+	cin)
+		exec cinnamon-session
+		;;
+	lxde)
+		exec startlxde
+		;;
+	mate)
+		exec mate
+		;;
 esac
