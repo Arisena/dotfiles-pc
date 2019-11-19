@@ -55,19 +55,13 @@ case $XS in
 	gnome)
 		exec gnome-session
 		;;
+	lumina)
+		exec start-lumina-desktop
+		;;
 	df)
 		exec dwarffortress
 		;;
 	cata)
 		exec cataclysm-tiles
-		;;
-	cin)
-		exec cinnamon-session
-		;;
-	lxde)
-		exec startlxde
-		;;
-	mate)
-		exec mate
 		;;
 esac
