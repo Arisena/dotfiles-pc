@@ -195,6 +195,9 @@ client.background        #ffffff
 assign [class="^Steam$"] (WORKSPACE_NUMBER)
 assign [class="^discord$"] (WORKSPACE_NUMBER)
 
+workspace 1 output DisplayPort-0
+workspace 3 output DisplayPort-1
+
 # Container Modifications
 # title_align center
 new_window 1pixel
