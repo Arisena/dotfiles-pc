@@ -59,28 +59,25 @@ alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'
 alias clbuild='rm -rf ~/build && mkdir ~/build'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
-alias term='XS=st startx'										# Start st
 alias i3='XS=i3 startx'											# Start i3
 alias gnome='XS=gnome startx'									# Start Gnome
 alias dwarf='XS=df startx'										# Start Dwarf Fortress
 alias cata='XS=cata startx'										# Start Cataclysm DDA
 alias volume='alsamixer'
 alias refl='sudo reflector --verbose --country US --country Canada --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
-alias upgrade='sudo bauerbill -Syu --aur && sudo pkgfile -u'
+alias upgrade='sudo powerpill -Syu && yay --aur -Syu && sudo pkgfile -u'
 alias cowfort='cowthink -e Oo $(fortune -ac)'
 alias vpnstart='sudo protonvpn-cli -m'
 alias vpnstop='sudo protonvpn-cli -d'
 alias gitu='git add . && git commit && git push'
 alias vim='nvim'
 
-autoload -U compinit colors
+# Theming section
+autoload -U compinit colors zcalc
 compinit -d
 colors
-# Theming section
 autoload -Uz promptinit
 promptinit
-
-fpath=("$HOME/.zprompts" "$fpath[@]")
 
 # enable substitution for prompt
 setopt prompt_subst
@@ -90,9 +87,8 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
  #PROMPT="%(!.%{$fg[red]%}[%n: %1~]%{$reset_color%}# .%{$fg[cyan]%}[%n: %1~]%{$reset_color%}$ "
 # Maia prompt
-# PROMPT="%B%{$fg[white]%}%(4~|%-1~/.../%2~|%~)%u%b>%{$fg[blue]%}>%B%(?.%{$fg[white]%}.%{$fg[red]%})>%{$reset_color%}%b " # Print some system information when the shell is first started
+ZSH_THEME="agnoster"
 # Print a greeting message when shell is started
-prompt agnoster
 echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
 #cowthink -e Oo $(fortune -ac)
 ##neofetch
@@ -192,31 +188,14 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     RPROMPT="%{$fg[red]%} %(?..[%?])"
     alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
 	export CALLED_FROM_START_APP=yes
-	launch.sh
+	PROMPT="%B%{$fg[white]%}%(4~|%-1~/.../%2~|%~)%u%b>%{$fg[blue]%}>%B%(?.%{$fg[white]%}.%{$fg[red]%})>%{$reset_color%}%b "
     ;;
-#  'tmux: server')
-#        RPROMPT='$(git_prompt_string)'
-#		## Base16 Shell color themes.
-#		#possible themes: 3024, apathy, ashes, atelierdune, atelierforest, atelierhearth,
-#		#atelierseaside, bespin, brewer, chalk, codeschool, colors, default, eighties,
-#		#embers, flat, google, grayscale, greenscreen, harmonic16, isotope, londontube,
-#		#marrakesh, mocha, monokai, ocean, paraiso, pop (dark only), railscasts, shapesifter,
-#		#solarized, summerfruit, tomorrow, twilight
-#		#theme="eighties"
-#		#Possible variants: dark and light
-#		#shade="dark"
-#		#BASE16_SHELL="/usr/share/zsh/scripts/base16-shell/base16-$theme.$shade.sh"
-#		#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-#		# Use autosuggestion
-#		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-#  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-#     ;;
   *)
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
 		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=30'
+		prompt agnoster
     ;;
 esac

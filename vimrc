@@ -47,14 +47,11 @@ if has('nvim')
 	set rtp^=/usr/share/vim/vimfiles/
 endif
 
-
 execute pathogen#infect()
-set guifont=DroidSansMono\ Nerd\ Font\ 12
-set laststatus=2
-set updatetime=100
-let g:indent_guides_enable_on_vim_startup = 1
+let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
+"set laststatus=2
 let g:airline#extensions#ale#enabled = 1
-let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
-let g:airline_extensions = ['branch', 'tabline']
+"set updatetime=100
+let g:indent_guides_enable_on_vim_startup = 1
