@@ -244,6 +244,7 @@ label = %date% %time%
 type = internal/pulseaudio
 
 use-ui-max = true
+sink = alsa_output.usb-Corsair_Corsair_VOID_PRO_Wireless_Gaming_Headset-00.iec958-stereo
 
 format-volume = <label-volume>
 label-volume = V:%percentage%%
