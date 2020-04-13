@@ -67,10 +67,11 @@ alias volume='alsamixer'
 alias refl='sudo reflector --verbose --country US --country Canada --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias upgrade='sudo powerpill -Syu && yay --aur -Syu && sudo pkgfile -u'
 alias cowfort='cowthink -e Oo $(fortune -ac)'
-alias vpnstart='sudo protonvpn-cli -m'
-alias vpnstop='sudo protonvpn-cli -d'
+alias vpnstart='sudo protonvpn c -f'
+alias vpnstop='sudo protonvpn d'
 alias gitu='git add . && git commit && git push'
 alias vim='nvim'
+#alias mpv='mpv --terminal=yes'
 
 # Theming section
 autoload -U compinit colors zcalc

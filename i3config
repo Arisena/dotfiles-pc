@@ -192,7 +192,7 @@ client.urgent            #002b36 #002b36 #839496 #dc322f   #000000
 client.placeholder       #073642 #073642 #839496 #dc322f   #000000
 client.background        #ffffff
 
-assign [class="^Steam$"] $ws2
+assign [class="^Steam$"] (WORKSPACE_NUMBER)
 assign [class="^discord$"] $ws3
 
 workspace 1 output DisplayPort-0
