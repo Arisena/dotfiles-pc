@@ -190,6 +190,7 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
 	export CALLED_FROM_START_APP=yes
 	PROMPT="%B%{$fg[white]%}%(4~|%-1~/.../%2~|%~)%u%b>%{$fg[blue]%}>%B%(?.%{$fg[white]%}.%{$fg[red]%})>%{$reset_color%}%b "
+	[[ "$PS1" ]] && echo -e "\e[00;36m$(/usr/bin/fortune)\e[00m"
     ;;
   *)
         RPROMPT='$(git_prompt_string)'
@@ -198,6 +199,6 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=30'
 		prompt agnoster
-		[[ "$PS1" ]] && echo -e "\e[00;34m$(/usr/bin/fortune)\e[00m"
+		[[ "$PS1" ]] && echo -e "\e[00;36m$(/usr/bin/fortune)\e[00m"
     ;;
 esac
