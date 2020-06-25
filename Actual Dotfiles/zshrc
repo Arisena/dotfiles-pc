@@ -198,5 +198,6 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=30'
 		prompt agnoster
+		[[ "$PS1" ]] && echo -e "\e[00;34m$(/usr/bin/fortune)\e[00m"
     ;;
 esac
