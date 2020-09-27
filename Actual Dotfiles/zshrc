@@ -60,6 +60,7 @@ alias clbuild='rm -rf ~/build && mkdir ~/build'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
 alias i3='XS=i3 startx'											# Start i3
+alias dwm='XS=dwm startx'										# Start dwm
 alias gnome='XS=gnome startx'									# Start Gnome
 alias dwarf='XS=df startx'										# Start Dwarf Fortress
 alias cata='XS=cata startx'										# Start Cataclysm DDA
