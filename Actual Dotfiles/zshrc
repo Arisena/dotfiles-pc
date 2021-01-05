@@ -25,6 +25,7 @@ SAVEHIST=500
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
+export PATH="$PATH:/home/ari/.emacs.d/bin"
 
 ## Keybindings section
 bindkey -e
@@ -71,7 +72,6 @@ alias cowfort='cowthink -e Oo $(fortune -ac)'
 alias vpnstart='sudo protonvpn c -f'
 alias vpnstop='sudo protonvpn d'
 alias gitu='git add . && git commit && git push'
-alias vim='nvim'
 #alias mpv='mpv --terminal=yes'
 
 # Theming section
