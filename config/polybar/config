@@ -55,7 +55,7 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = dwm vpncheck
+modules-left = dwm
 modules-center = mpdRestart mpdPrev mpdBackward mpd mpdForward mpdNext mpdToggle
 modules-right = volControl pulseaudio filesystem date
 
@@ -92,7 +92,7 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = dwm vpncheck
+modules-left = dwm
 modules-center = mpdRestart mpdPrev mpdBackward mpd mpdForward mpdNext mpdToggle
 modules-right = cpu memory date
 
@@ -431,12 +431,12 @@ tail = true
 
 format-underline = ${colors.blue}
 
-[module/vpncheck]
-type = custom/script
-exec = vpncheck
-tail = true
+; [module/vpncheck]
+; type = custom/script
+; exec = vpncheck
+; tail = true
 
-format-underline = ${colors.blue}
+;format-underline = ${colors.blue}
 
 [module/updates]
 type = custom/script
