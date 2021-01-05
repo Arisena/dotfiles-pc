@@ -219,4 +219,4 @@ exec pasystray
 exec flameshot
 #exec gnome-encfs-manager
 #exec picom
-exec setDP
+t

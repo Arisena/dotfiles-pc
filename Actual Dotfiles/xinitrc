@@ -53,7 +53,7 @@ case $XS in
 		exec i3
 		;;
 	dwm)
-		exec dwm
+		exec dwm-launch
 		;;
 	gnome)
 		exec gnome-session
