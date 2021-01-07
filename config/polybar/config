@@ -59,9 +59,9 @@ modules-left = dwm
 modules-center = mpdRestart mpdPrev mpdBackward mpd mpdForward mpdNext mpdToggle
 modules-right = volControl pulseaudio filesystem date
 
-tray-position = right
-tray-padding = 2
-tray-background = #0063ff
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
 
 ;wm-restack = i3
 
@@ -96,9 +96,9 @@ modules-left = dwm
 modules-center = mpdRestart mpdPrev mpdBackward mpd mpdForward mpdNext mpdToggle
 modules-right = cpu memory date
 
-;tray-position = right
-#tray-padding = 2
-;tray-background = #0063ff
+tray-position = right
+tray-padding = 2
+tray-background = #0063ff
 
 ;wm-restack = i3
 
