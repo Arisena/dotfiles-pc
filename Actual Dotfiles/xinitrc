@@ -58,10 +58,4 @@ case $XS in
 	gnome)
 		exec gnome-session
 		;;
-	df)
-		exec dwarffortress
-		;;
-	cata)
-		exec cataclysm-tiles
-		;;
 esac
