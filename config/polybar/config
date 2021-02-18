@@ -33,7 +33,7 @@ cyan=#2aa198
 green=#859900
 
 [bar/first]
-monitor = ${env:MONITOR:DP-2}
+monitor = ${env:MONITOR:DisplayPort-1}
 
 bottom=false
 width = 100%
@@ -70,7 +70,7 @@ override-redirect = false
 cursor-click = pointer
 
 [bar/second]
-monitor = ${env:MONITOR:DP-3}
+monitor = ${env:MONITOR:DisplayPort-2}
 
 bottom=false
 width = 100%
