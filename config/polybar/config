@@ -16,21 +16,36 @@
 ;
 ;==========================================================
 [colors]
-background = #002b36
-background-alt = #073642
+;background = #002b36
+;background-alt = #073642
 
-foreground = #839496
+;foreground = #839496
 
-emph = #93a1a1
+;emph = #93a1a1
 
-yellow=#b58900
-orange=#cb4b16
-red=#dc322f
-magenta=#d33682
-violet=#6c71c4
-blue=#268bd2
-cyan=#2aa198
-green=#859900
+;yellow=#b58900
+;orange=#cb4b16
+;red=#dc322f
+;magenta=#d33682
+;violet=#6c71c4
+;blue=#268bd2
+;cyan=#2aa198
+;green=#859900
+
+; Gruvbox
+background = #282828
+background-alt = #1d2021
+foreground = #a89984
+emph = #ebdbb2
+
+yellow=#d79921
+orange=#d65d0e
+red=#cc241d
+magenta=
+violet=#b16286
+blue=#458588
+cyan=#689d6a
+green=#98971a
 
 [bar/first]
 monitor = ${env:MONITOR:DisplayPort-1}
