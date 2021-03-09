@@ -113,7 +113,7 @@ modules-right = cpu memory date
 
 tray-position = right
 tray-padding = 2
-tray-background = #0063ff
+tray-background = #282828
 
 ;wm-restack = i3
 
