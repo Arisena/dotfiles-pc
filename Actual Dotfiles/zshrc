@@ -73,6 +73,7 @@ alias vpnstart='sudo protonvpn c -f'
 alias vpnstop='sudo protonvpn d'
 alias gitu='git add . && git commit && git push'
 #alias mpv='mpv --terminal=yes'
+alias jellyfin='flatpak run com.github.iwalton3.jellyfin-mpv-shim'
 
 # Theming section
 autoload -U compinit colors zcalc
