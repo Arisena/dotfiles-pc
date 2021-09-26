@@ -50,6 +50,7 @@ fi
 
 case $XS in
 	i3)
+		fix2ndD
 		exec i3
 		;;
 	dwm)
