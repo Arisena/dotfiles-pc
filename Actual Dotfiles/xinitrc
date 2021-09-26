@@ -53,9 +53,6 @@ case $XS in
 		fix2ndD
 		exec i3
 		;;
-	dwm)
-		exec dwm-launch
-		;;
 	gnome)
 		exec gnome-session
 		;;
