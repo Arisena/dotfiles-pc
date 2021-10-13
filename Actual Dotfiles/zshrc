@@ -57,7 +57,6 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 ## Alias section
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'
-#alias clbuild='rm -rf ~/build && mkdir ~/build'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
 alias i3='XS=i3 startx'											# Start i3
@@ -72,7 +71,6 @@ alias upgrade='sudo pacman -Syu && yay --aur -Syu && sudo pkgfile -u'
 #alias vpnstop='sudo protonvpn d'
 alias gitu='git add . && git commit && git push'
 #alias mpv='mpv --terminal=yes'
-#alias jellyfin='flatpak run com.github.iwalton3.jellyfin-mpv-shim'
 
 # Theming section
 autoload -U compinit colors zcalc
