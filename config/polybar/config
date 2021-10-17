@@ -267,6 +267,8 @@ wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
+strip-wsnumbers = true
+fuzzy-match= true
 
 label-mode = %mode%
 label-mode-padding = 2
