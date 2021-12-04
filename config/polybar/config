@@ -48,7 +48,7 @@ cyan=#689d6a
 green=#98971a
 
 [bar/first]
-monitor = ${env:MONITOR:DisplayPort-1}
+monitor = ${env:MONITOR:DP-2}
 
 scroll-up = "#i3.prev"
 scroll-down = "#i3.next"
@@ -88,7 +88,7 @@ override-redirect = false
 cursor-click = pointer
 
 [bar/second]
-monitor = ${env:MONITOR:DisplayPort-2}
+monitor = ${env:MONITOR:DP-3}
 
 scroll-up = "#i3.prev"
 scroll-down = "#i3.next"
