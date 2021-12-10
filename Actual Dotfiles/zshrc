@@ -62,7 +62,7 @@ alias ls='ls --color --group-directories-first --classify'
 alias i3='XS=i3 startx'											# Start i3
 #alias kde='XS=kde startx'                     # Start KDE Plasma
 #alias dwm='XS=dwm startx'										# Start dwm
-#alias gnome='XS=gnome startx'									# Start Gnome
+alias xorg-gnome='XS=gnome startx'									# Start Gnome
 alias gnome='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
 #alias kde='XDG_SESSION_TYPE=wayland dbus-run-session startplasma-wayland'
 alias volume='alsamixer'
