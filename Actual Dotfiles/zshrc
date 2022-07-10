@@ -68,7 +68,9 @@ alias gnome='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
 alias volume='alsamixer'
 alias refl='sudo reflector --verbose --country US --country Canada --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias upgrade='sudo pacman -Syu && yay --aur -Syu && flatpak update && sudo pkgfile -u'
+alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
+alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
 
 # Theming section
 autoload -U compinit colors zcalc
