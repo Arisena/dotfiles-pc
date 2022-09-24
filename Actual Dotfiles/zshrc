@@ -67,6 +67,7 @@ alias upgrade='sudo pacman -Syu && yay --aur -Syu && flatpak update && sudo pkgf
 alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 #alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 #Used to create Email Alias on my email server box.atswarra.com
 email-alias-create() {
