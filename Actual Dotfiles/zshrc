@@ -59,7 +59,7 @@ alias cp="cp -i"                                                # Confirm before
 alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify'
-alias i3='XS=i3 startx'											# Start i3
+#alias i3='XS=i3 startx'											# Start i3
 #alias kde='XS=kde startx'                     # Start KDE Plasma
 #alias dwm='XS=dwm startx'										# Start dwm
 alias gnome='XS=gnome startx'									# Start Gnome
@@ -70,7 +70,7 @@ alias refl='sudo reflector --verbose --country US --country Canada --age 12 --pr
 alias upgrade='sudo pacman -Syu && yay --aur -Syu && flatpak update && sudo pkgfile -u'
 #alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
-alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
+#alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
 
 email-alias-create() {
 	curl -X POST -d "address=$1" -d "forwards_to=bmccourt@atswarra.com" --user $(sudo cat /root/.domain-creds) https://box.atswarra.com/admin/mail/aliases/add
