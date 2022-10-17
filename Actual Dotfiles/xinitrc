@@ -56,4 +56,7 @@ case $XS in
 	gnome)
 		exec gnome-session
 		;;
+	kde)
+		export DESKTOP_SESSION=plasma
+		exec startplasma-x11
 esac
