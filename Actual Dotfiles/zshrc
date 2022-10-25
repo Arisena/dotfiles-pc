@@ -68,7 +68,7 @@ alias refl='sudo reflector --verbose --country US --age 12 --protocol http --pro
 alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 #alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+alias ssh="kitty +kitten ssh"
 
 #Function for upgrading system
 upgrade(){
