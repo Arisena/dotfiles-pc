@@ -58,7 +58,7 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'			# Clean Downloads folder in /home Directory
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
-alias ls='ls --color --group-directories-first --classify'
+alias ls='ls --color --group-directories-first --classify -h'
 #alias i3='XS=i3 startx'											# Start i3
 alias gnome='XS=gnome startx'									# Start Gnome
 alias gnome-wayland='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
@@ -68,7 +68,8 @@ alias refl='sudo reflector --verbose --country US --age 12 --protocol http --pro
 alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 #alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
-alias ssh="kitty +kitten ssh"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+alias kicat="kitty +kitten icat"
 
 #Function for upgrading system
 upgrade(){
