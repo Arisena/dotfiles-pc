@@ -73,13 +73,13 @@ alias kicat="kitty +kitten icat"
 #Function for upgrading system
 upgrade(){
 	echo "Starting Upgrade Procedure...\n"
-  	if [[ $1 == "no-aur" ]]
+  	if [[ $1 == "aur" ]]
   	then
-		upgrade-2
-	else
 		upgrade-2
 		yay --aur -Syu
    		echo "\nAUR Completed\n"
+	else
+		upgrade-2
 	fi
 }
 
