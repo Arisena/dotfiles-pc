@@ -93,6 +93,11 @@ upgrade(){
   fi
 }
 
+wine-cmd(){
+	export WINEPREFIX=$HOME/.wine
+	wine wineboot
+	wine cmd
+}
 
 #Used to create Email Alias on my email server box.atswarra.com
 email-alias-create() {
