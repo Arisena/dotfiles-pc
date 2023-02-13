@@ -72,27 +72,27 @@ alias kicat="kitty +kitten icat"
 
 #Function for upgrading system
 upgrade(){
-	echo "Starting Upgrade Procedure...\n"
-  	if [[ $1 == "aur" ]]
-  	then
-		upgrade-2
-		yay --aur -Syu
-   		echo "\nAUR Completed\n"
-	else
-		upgrade-2
-	fi
+  echo "Starting Upgrade Procedure...\n"
+  if [[ $1 == "noaur" ]]
+  then
+    sudo pacman -Syu --noconfirm
+    echo "\nPacman Completed\n"
+    flatpak update -y
+    echo "\nFlatpak Completed\n"
+    sudo pkgfile -u
+    echo "\nUPDATE COMPLETED\n"
+  else
+    sudo pacman -Syu --noconfirm
+    echo "\nPacman Completed\n"
+    flatpak update -y
+    echo "\nFlatpak Completed\n"
+    yay --aur -Syu
+    echo "\nAUR Completed\n"
+    sudo pkgfile -u
+    echo "\nUPDATE COMPLETED\n"
+  fi
 }
 
-upgrade-2(){
-	sudo pacman -Syu --noconfirm
-	echo "\nPacman Completed\n"
-	sleep 1
-	flatpak update -y
-	echo "\nFlatpak Completed\n"
-	sleep 1
-	sudo pkgfile -u
-	echo "\nUPDATE COMPLETED\n"
-}
 
 #Used to create Email Alias on my email server box.atswarra.com
 email-alias-create() {
