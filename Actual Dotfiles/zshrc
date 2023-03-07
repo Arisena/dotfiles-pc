@@ -67,7 +67,7 @@ alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
 #alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+[ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
 
 #Function for upgrading system
