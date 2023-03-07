@@ -1,6 +1,6 @@
-set background=dark
-set t_Co=16
-hi Normal guibg=NONE ctermbg=NONE
+"set background=dark
+"set t_Co=16
+"hi Normal guibg=NONE ctermbg=NONE
 
 syntax on
 filetype plugin indent on
