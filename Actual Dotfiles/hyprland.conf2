@@ -123,7 +123,7 @@ device:epic mouse V1 {
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 # rules below would make the specific app transparent
 windowrulev2 = opacity 0.8 0.8,class:^(kitty)$
-windowrulev2 = opacity 0.8 0.8,class:^(thunar)$
+# windowrulev2 = opacity 0.8 0.8,class:^(thunar)$
 windowrule = workspace 2, keepassxc
 windowrule = workspace 4, discord-screenaudio
 # windowrulev2 = opacity 0.8 0.8,class:^(chromium)$
@@ -144,7 +144,7 @@ bind = $mainMod, F, fullscreen
 bind = $mainMod, D, exec, wofi # Show the graphicall app launcher
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, togglesplit, # dwindle
-# bind = $mainMod, S, exec, grim -g "$(slurp)" - | swappy -f - # take a screenshot
+bind = $mainMod, S, exec, grim -g "$(slurp)" - | swappy -f - # take a screenshot
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
