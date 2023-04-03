@@ -60,6 +60,7 @@ alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'			# Clean Downloads folde
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify -h'
 alias gnome='XS=gnome startx'									# Start Gnome
+alias hyprland='Hyprland'
 alias gnome-wayland='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
 alias startkde='XS=kde startx'
 alias refl='sudo reflector --verbose --country US --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
