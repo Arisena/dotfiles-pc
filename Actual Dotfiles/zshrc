@@ -73,25 +73,15 @@ alias kicat="kitty +kitten icat"
 
 #Function for upgrading system
 upgrade(){
-  echo "Starting Upgrade Procedure...\n"
-  if [[ $1 == "noaur" ]]
-  then
-    sudo pacman -Syu --noconfirm
-    echo "\nPacman Completed\n"
-    flatpak update -y
-    echo "\nFlatpak Completed\n"
-    sudo pkgfile -u
-    echo "\nUPDATE COMPLETED\n"
-  else
-    sudo pacman -Syu --noconfirm
-    echo "\nPacman Completed\n"
-    flatpak update -y
-    echo "\nFlatpak Completed\n"
-    yay --aur -Syu
-    echo "\nAUR Completed\n"
-    sudo pkgfile -u
-    echo "\nUPDATE COMPLETED\n"
-  fi
+  echo "Starting Upgrade Procedure..."
+  sudo pacman -Syu --noconfirm
+  echo "\nPacman Completed"
+  flatpak update -y
+  echo "\nFlatpak Completed"
+  yay --aur -Syu
+  echo "\nAUR Completed"
+  sudo pkgfile -u
+  echo "\nUPDATE COMPLETED"
 }
 
 wine-cmd(){
