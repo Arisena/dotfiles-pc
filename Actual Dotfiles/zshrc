@@ -71,6 +71,9 @@ alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
 [ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
 
+# Wine Program Aliases
+alias vortex="wine ~/Games/Vortex/Vortex.exe"
+
 #Function for upgrading system
 upgrade(){
   echo "Starting Upgrade Procedure..."
