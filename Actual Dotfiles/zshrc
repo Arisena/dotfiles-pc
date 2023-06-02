@@ -72,7 +72,7 @@ alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
 alias kicat="kitty +kitten icat"
 
 # Wine Program Aliases
-alias vortex="wine ~/Games/Vortex/Vortex.exe"
+#
 
 #Function for upgrading system
 upgrade(){
