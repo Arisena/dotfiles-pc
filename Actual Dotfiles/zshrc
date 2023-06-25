@@ -73,6 +73,7 @@ alias kicat="kitty +kitten icat"
 
 # Wine Program Aliases
 #
+alias vortex="wine /home/ari/Games/Vortex/Vortex.exe"
 
 #Function for upgrading system
 upgrade(){
