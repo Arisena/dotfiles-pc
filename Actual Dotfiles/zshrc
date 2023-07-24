@@ -70,6 +70,7 @@ alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
 #alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
 [ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
+alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
 
 # Wine Program Aliases
 #
