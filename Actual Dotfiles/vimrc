@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,6 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 " " Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+let g:gruvbox_transparent_bg = 1
 Plugin 'morhetz/gruvbox'
 colorscheme gruvbox
 
@@ -34,6 +36,9 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline_symbols_branch = ''
+let g:airline_symbols_readonly = ''
+let g:airline_symbols_linenr = ''
 
 " " All of your Plugins must be added before the following line
 " call vundle#end()            " required
