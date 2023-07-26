@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+filetype plugin indent on
 
 
 " set the runtime path to include Vundle and initialize
@@ -65,7 +66,6 @@ set bg=dark
 "hi Normal guibg=NONE ctermbg=NONE
 
 syntax on
-filetype plugin indent on
 
 set encoding=utf-8
 set mouse=a
