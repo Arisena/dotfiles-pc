@@ -89,6 +89,8 @@
       firefox
       thunderbird
       steam
+      lutris
+      wine-staging
       flatpak
       kitty
       zsh
