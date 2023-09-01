@@ -59,6 +59,7 @@
   services.printing.enable = true;
 
   services.xserver.excludePackages = [ pkgs.xterm ];
+  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -91,10 +92,15 @@
       steam
       lutris
       wine-staging
-      flatpak
       kitty
       zsh
       oh-my-zsh
+      element
+      keepassxc
+      filezilla
+      pcsx2
+      flatpak
+      gnome.gnome-software
     ];
   };
 
@@ -104,10 +110,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+  nfs-utils
   gnupg
   wget
   vim
   git
+  duf
   pinentry-curses
   ncurses
   ];
@@ -121,8 +129,6 @@
 	
 
   services.flatpak.enable = true;
-
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   users.users.ari.shell = pkgs.zsh;
   programs.zsh.enable = true;
