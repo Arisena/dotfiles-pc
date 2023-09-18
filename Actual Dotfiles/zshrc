@@ -74,7 +74,7 @@ alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
 
 # Wine Program Aliases
 #
-alias vortex="wine /home/ari/Games/Vortex/Vortex.exe"
+alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ Ltd/Vortex/Vortex.exe"
 
 #Function for upgrading system
 upgrade(){
