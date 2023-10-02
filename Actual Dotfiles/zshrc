@@ -25,7 +25,7 @@ SAVEHIST=500
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
-export PATH="$PATH:/home/ari/.emacs.d/bin"
+export PATH="$PATH:/home/ari/.config/emacs/bin"
 
 ## Keybindings section
 bindkey -e
@@ -77,17 +77,17 @@ alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
 alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ Ltd/Vortex/Vortex.exe"
 
 #Function for upgrading system
-upgrade(){
-  echo "Starting Upgrade Procedure..."
-  sudo pacman -Syu --noconfirm
-  echo "\nPacman Completed"
-  flatpak update -y
-  echo "\nFlatpak Completed"
-  yay --aur -Syu
-  echo "\nAUR Completed"
-  sudo pkgfile -u
-  echo "\nUPDATE COMPLETED"
-}
+#upgrade(){
+#  echo "Starting Upgrade Procedure..."
+#  sudo pacman -Syu --noconfirm
+#  echo "\nPacman Completed"
+#  flatpak update -y
+#  echo "\nFlatpak Completed"
+#  yay --aur -Syu
+#  echo "\nAUR Completed"
+#  sudo pkgfile -u
+#  echo "\nUPDATE COMPLETED"
+#}
 
 wine-cmd(){
 	export WINEPREFIX=$HOME/.wine
