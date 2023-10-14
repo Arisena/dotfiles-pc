@@ -97,11 +97,11 @@ wine-cmd(){
 
 #Used to create Email Alias on my email server box.atswarra.com
 email-alias-create() {
-	curl -X POST -d "address=$1" -d "forwards_to=bmccourt@atswarra.com" --user $(sudo cat /root/.domain-creds) https://box.atswarra.com/admin/mail/aliases/add
+	curl -X POST -d "address=$1" -d "forwards_to=$EMAIL" --user $(sudo -E cat /root/.domain-creds) https://$MAILSERVER/admin/mail/aliases/add
 }
 
 email-alias-remove() {
-	curl -X POST -d "address=$1" --user $(sudo cat /root/.domain-creds) https://box.atswarra.com/admin/mail/aliases/remove
+	curl -X POST -d "address=$1" --user $(sudo -E cat /root/.domain-creds) https://$MAILSERVER/admin/mail/aliases/remove
 }
 # Theming section
 autoload -U compinit colors zcalc
