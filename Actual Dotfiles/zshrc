@@ -62,12 +62,10 @@ alias ls='ls --color --group-directories-first --classify -h'
 alias hyprland='Hyprland'
 alias gnome-wayland='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
 #alias gnome='XS=gnome startx'									# Start Gnome
-#alias startkde='XS=kde startx'
 alias refl='sudo reflector --verbose --country US --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
-#alias ansible-update='ansible-playbook --ask-become-pass ~/Documents/update.yml'
 [ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
 alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
@@ -88,12 +86,6 @@ alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
 #  sudo pkgfile -u
 #  echo "\nUPDATE COMPLETED"
 #}
-
-wine-cmd(){
-	export WINEPREFIX=$HOME/.wine
-	wine wineboot
-	wine cmd
-}
 
 #Used to create Email Alias on my email server box.atswarra.com
 email-alias-create() {
