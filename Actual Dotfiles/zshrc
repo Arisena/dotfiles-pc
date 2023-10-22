@@ -69,7 +69,7 @@ alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
 [ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
 alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
-alias tarxz="tar -c -I 'xz -9 -T0' -f"
+alias tarxz="tar -cv -I 'xz -9 -T0' -f"
 
 # Wine Program Aliases
 #
