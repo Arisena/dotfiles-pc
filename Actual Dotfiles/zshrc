@@ -74,7 +74,7 @@ alias tarxz="tar -cv -I 'xz -9 -T0' -f"
 
 # Wine Program Aliases
 #
-#alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ Ltd/Vortex/Vortex.exe"
+alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ Ltd/Vortex/Vortex.exe"
 
 #Function for upgrading system
 #upgrade(){
