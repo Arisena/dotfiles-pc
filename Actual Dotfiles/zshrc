@@ -59,17 +59,18 @@ alias cp="cp -i"                                                # Confirm before
 alias cldown='rm -rf ~/Downloads && mkdir ~/Downloads'			# Clean Downloads folder in /home Directory
 alias pq='pacman -Q | grep --color=auto'						# Display all packages containing something in name
 alias ls='ls --color --group-directories-first --classify -h'
-alias hyprland='Hyprland'
-alias gnome-wayland='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
+#alias hyprland='Hyprland'
+#alias gnome-wayland='XDG_SESSION_TYPE=wayland dbus-run-session gnome-session'
 #alias gnome='XS=gnome startx'									# Start Gnome
 alias refl='sudo reflector --verbose --country US --age 12 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias flatpak='flatpak --user'
 alias gitu='git add . && git commit && git push'
 alias syncthing='tmux new -s syncthing /usr/bin/syncthing'
-[ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 alias kicat="kitty +kitten icat"
 alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox"
 alias tarxz="tar -cv -I 'xz -9 -T0' -f"
+
+[ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 
 # Wine Program Aliases
 #
