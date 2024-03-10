@@ -74,8 +74,8 @@
 		(make-llm-ollama
                  ;; this model should be pulled to use it
                  ;; ;; value should be the same as you print in terminal during pull
-		 :chat-model "dolphin-mixtral"
-		 :embedding-model "dolphin-mixtral"))
+		 :chat-model "zephyr"
+		 :embedding-model "zephyr"))
 
 
 ;;
