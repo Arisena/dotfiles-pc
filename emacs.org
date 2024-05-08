@@ -1,0 +1,667 @@
+#+TITLE: Emacs Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :results none
+
+* Initial setup
+** Paths
+
+#+BEGIN_SRC emacs-lisp
+  (defvar ne/dotfiles-path (expand-file-name "~/dotfiles"))
+  (defvar ne/emacs-org (concat ne/dotfiles-path "/emacs.org"))
+  (defvar ne/backup-dir (expand-file-name "~/.backup"))
+#+END_SRC
+** Core Packages
+
+Packages needed for this config test
+#+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el
+  (setq package-enable-at-startup nil)
+#+end_src
+
+
+#+begin_src emacs-lisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+
+
+*Straight Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'general) ;; bind keys
+  (straight-use-package 'diminish) ;; hide mode
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (require 'general)
+  (require 'diminish)
+#+END_SRC
+
+** Config file helpers
+*** csetq
+
+Taken from https://with-emacs.com/posts/tutorials/almost-all-you-need-to-know-about-variables/
+
+Safely and easily set customizable variables
+#+BEGIN_SRC emacs-lisp
+  (defmacro csetq (sym val)
+    `(funcall (or (get ',sym 'custom-set) 'set-default) ',sym ,val))
+#+END_SRC
+
+*** Interactive thunk
+
+For setting quick keybinds. Avoid.
+#+BEGIN_SRC emacs-lisp
+  (defmacro i-thunk (&rest body)
+    `(lambda () (interactive) ,@body))
+#+END_SRC
+
+*** File hooks
+
+Helper
+#+BEGIN_SRC emacs-lisp
+  (defun ne/save-hook-for-file (file cmd)
+    (when (equal (buffer-file-name) file)
+      (async-shell-command cmd)))
+#+END_SRC
+
+*** Modeify
+
+#+BEGIN_SRC emacs-lisp
+  (defun modeify (symbol)
+    (intern (concat (symbol-name symbol) "-mode")))
+#+END_SRC
+
+*** require-d
+
+Require symbol and diminish mode symbol-mode
+#+BEGIN_SRC emacs-lisp
+  (defmacro require-d (symbol)
+    (let ((mode (modeify symbol)))
+      `(progn (require ',symbol)
+              (diminish ',mode))))
+#+END_SRC
+
+*** require-de
+
+Require symbol, activate and diminish its mode at symbol-mode
+#+BEGIN_SRC emacs-lisp
+  (defmacro require-de (symbol)
+    (let ((mode (modeify symbol)))
+      `(progn (require ',symbol)
+              (,mode 1)
+              (diminish ',mode))))
+#+END_SRC
+* General Emacs configuration
+** Identity
+#+BEGIN_SRC emacs-lisp
+  (setq user-mail-address "ari@atswarra.com")
+#+END_SRC
+
+** Use utf-8
+
+#+BEGIN_SRC emacs-lisp
+  (prefer-coding-system 'utf-8-unix)
+  (setq coding-system-for-read 'utf-8)
+  (setq coding-system-for-write 'utf-8)
+#+END_SRC
+
+** Use spaces
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+#+END_SRC
+
+** Use backup folder
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist `(("." . ,ne/backup-dir)))
+#+END_SRC
+
+** Don't use lock files
+
+Lock files confuse npm start
+#+BEGIN_SRC emacs-lisp
+  (setq create-lockfiles nil)
+#+END_SRC
+
+** Don't ask about symlinks
+
+#+BEGIN_SRC emacs-lisp
+  (csetq vc-follow-symlinks t)
+#+END_SRC
+
+** Reduce frequency of garbage collection
+
+#+BEGIN_SRC emacs-lisp
+  (setq gc-cons-threshold (* 50 1000 1000))
+#+END_SRC
+
+** Delete trailing whitespace
+
+#+BEGIN_SRC emacs-lisp
+  (setq delete-trailing-lines t)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+
+** Auth sources
+
+#+BEGIN_SRC emacs-lisp
+  (setq auth-sources '("~/.authinfo"))
+#+END_SRC
+
+** inhibit scratch startup message
+
+#+BEGIN_SRC emacs-lisp
+  (setq initial-scratch-mesage nil)
+#+END_SRC
+
+** Hide Toolbar
+#+BEGIN_SRC emacs-lisp
+  (tool-bar-mode -1)
+#+END_SRC
+
+** Smoth Scrolling
+[[https://www.emacswiki.org/emacs/SmoothScrolling][E)macs Wiki - Smooth Scrolling]]
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-step 1)
+#+END_SRC
+
+** Vterm M-w Copy
+#+begin_src emacs-lisp
+  (general-define-key :keymaps 'vterm-mode-map
+                      "M-w" #'copy-region-as-kill)
+#+end_src
+** Rebind Keys
+Rebind C-z
+#+begin_src emacs-lisp
+  (general-define-key
+   "C-z" nil)
+#+end_src
+#+begin_src emacs-lisp
+  (general-define-key
+   "C-c b" 'bookmark-jump)
+#+end_src
+** Brower Setup
+#+begin_src emacs-lisp
+  (setq browse-url-generic-program "firefox")
+#+end_src
+** Cursor Blink Delay
+#+begin_src emacs-lisp
+  (setq blink-cursor-delay 0.2)
+#+end_src
+
+* New C+F
+** Vertico
+
+Minimal vertical completion UI. Only changes the minibuffer completion
+UI instead of explicitly defining commands like =counsel=.
+
+*Striaght Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'vertico)
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key :keymaps 'vertico-map
+                      "<escape>" #'vertico-exit
+                      "C-<return>" #'vertico-exit-input
+                      "C-e" #'vertico-next
+                      "<C-i>" #'vertico-previous)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (vertico-mode)
+#+END_SRC
+*** Vertio directory
+
+Enable ido-like directory navigation features in =find-file=.
+Taken from vertico readme:
+#+BEGIN_SRC emacs-lisp
+  (add-to-list  'load-path "~/.emacs.d/straight/repos/vertico/extensions")
+  (require 'vertico-directory)
+  (general-define-key :keymaps 'vertico-map
+                      "DEL" #'vertico-directory-delete-char
+                      "M-DEL" #'vertico-directory-delete-word)
+
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+#+END_SRC
+
+#+begin_src emacs-lisp
+  (defun vertico-directory-up (&optional n)
+    "Delete N directories before point."
+    (interactive "p")
+    (when (and (> (point) (minibuffer-prompt-end))
+               (eq (char-before) ?/)
+               (vertico-directory--completing-file-p))
+      (let ((path (buffer-substring (minibuffer-prompt-end) (point))) found)
+        (when (string-match-p "\\`~[^/]*/\\'" path)
+          (delete-minibuffer-contents)
+          (insert (expand-file-name path)))
+        (dotimes (_ n found)
+          (save-excursion
+            (let ((end (point)))
+              (goto-char (1- end))
+              (when (search-backward "/" (minibuffer-prompt-end) t)
+                ;; Don't glomp my 4 deep multihop please
+                (unless (string-match "\\`[^/]+[@:]/\\'" (buffer-substring (1+ (point)) end))
+                  (delete-region (1+ (point)) end)
+                  (setq found t)))))))))
+#+end_src
+
+** Marginalia
+
+Show more information in the margins of completion options.
+
+*Straight Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'marginalia)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (marginalia-mode)
+#+END_SRC
+
+** Embark
+
+Preform actions on completion results.
+
+*Striaght Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'embark)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key :keymaps '(minibuffer-mode-map)
+                      "C-d" #'embark-act)
+#+END_SRC
+
+Taken from readme, make which-key work with embark.
+
+#+BEGIN_SRC emacs-lisp
+  (setq embark-action-indicator
+        (lambda (map)
+          (which-key--show-keymap "Embark" map nil nil 'no-paging)
+          #'which-key--hide-popup-ignore-command)
+        embark-become-indicator embark-action-indicator)
+#+END_SRC
+
+** Avy
+
+Use =C-'= to jump with avy in ivy minibuffer.
+
+*Straight Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'ivy-avy)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ivy-avy)
+#+END_SRC
+﻿
+/
+* Async shell commands
+
+- [ ] Rewrite this without using =async-shell-command=.
+  #+BEGIN_SRC emacs-lisp
+    (straight-use-package 'async)
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+    (defun ne/async-shell-command (command buff &optional callback)
+      "Buff is either a buffer, a string to be used as a buffer name, or nil"
+      (let ((buff (if (bufferp buff) buff
+                    (generate-new-buffer (or buff "*Async Shell Command*")))))
+        (async-shell-command command buff)
+        (let ((proc (get-buffer-process buff)))
+          (when (process-live-p proc)
+            (set-process-sentinel
+             proc
+             `(lambda (proc _)
+                (let ((buff (process-buffer proc))
+                      (callback ,callback)) ;; I HATE DYNAMIC SCOPING I HATE DYNAMIC SCOPING
+                  (when callback
+                    (with-current-buffer buff
+                      (funcall callback)))
+                  (kill-buffer (process-buffer proc)))))))))
+  #+END_SRC
+* Tangling functions
+** Org
+#+BEGIN_SRC emacs-lisp
+  ;; (straight-use-package 'org :melpa :rev "9.6")
+  (straight-use-package 'org)
+#+END_SRC
+
+
+A function for async tangling that runs on save hook.
+
+
+#+BEGIN_SRC emacs-lisp
+  (require 'async)
+  (defun ne/async-tangle-dont-ask ()
+    "Asynchronously tangle an Org mode buffer without asking for confirmation."
+    (interactive)
+    (let ((file (buffer-file-name (current-buffer))))
+      (async-start
+       `(lambda ()
+          (require 'org)
+          ;; (require 'orgi-install)
+          ;; (require 'ob-tangle)
+          (let ((org-confirm-babel-evaluate nil))
+            (org-babel-tangle-file ,file)))
+       (lambda (result)
+         (message "Async tangle complete.")))))
+
+  (add-hook 'org-mode-hook
+            (lambda () (add-hook 'after-save-hook #'ne/async-tangle-dont-ask
+                                 'run-at-end 'only-in-org-mode)))
+#+END_SRC
+
+
+* Standalone Straight Packages
+** Magit
+
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'magit)
+#+END_SRC
+** Terminal
+
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'vterm)
+#+END_SRC
+** Undo Tree
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'undo-tree)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (global-undo-tree-mode)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (csetq undo-tree-history-directory-alist
+         `(("." . ,(concat ne/backup-dir "/undo-tree"))))
+  (csetq undo-tree-auto-save-history t)
+#+END_SRC
+** Doom Themes
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'doom-themes)
+  (load-theme 'doom-tomorrow-night t)
+#+END_SRC
+** Company
+
+Modern in-buffer completion system.
+
+*Straight Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'company)
+#+END_SRC
+
+#+begin_src emacs-lisp
+  (require 'company)
+  (diminish 'company-mode)
+  (setq company-idle-delay 0.0)
+  (add-hook 'after-init-hook #'global-company-mode)
+#+end_src
+Remove some unneeded backends
+#+BEGIN_SRC emacs-lisp
+  (mapc (lambda (x) (delq x company-backends))
+        '(company-bbdb
+          company-semantic
+          company-cmake
+          company-clang
+          company-oddmuse))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key :keymaps 'company-active-map
+                      ;; Use C-n/p alongside M-n/p
+                      "C-n" #'company-select-next
+                      "C-p" #'company-select-previous)
+#+END_SRC
+
+** Which Key
+
+*Straight Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'which-key)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (require-de which-key)
+  (setq which-key-idle-delay .5)
+#+END_SRC
+** Docker Enhancements
+
+#   (straight-use-package 'docker)
+#   (straight-use-package 'docker-tramp)
+
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'dockerfile-mode)
+  (straight-use-package 'docker-compose-mode)
+#+END_SRC
+
+** Snippets
+#+begin_src emacs-lisp
+  (straight-use-package 'yasnippet)
+  (require 'yasnippet)
+  (yas-global-mode 1)
+  (setq-local yas-indent-line 'fixed)
+#+end_src
+
+** Shell-Check
+#+begin_src emacs-lisp
+  (straight-use-package 'flymake-shellcheck)
+  (require 'flymake-shellcheck)
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
+#+end_src
+
+** Multi Vterm
+#+begin_src emacs-lisp
+  (straight-use-package 'multi-vterm)
+  (require 'multi-vterm)
+#+end_src
+
+** Dev Docs
+#+begin_src emacs-lisp
+  (straight-use-package 'devdocs)
+  (require 'devdocs)
+#+end_src
+
+** Orderless
+*Striaght Packages*
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'orderless)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+#+END_SRC
+
+** WinMove
+#+begin_src emacs-lisp
+  (windmove-default-keybindings)
+#+end_src
+** Dev Docs
+#+begin_src emacs-lisp
+  (straight-use-package 'pyvenv-auto)
+  (require 'pyvenv-auto)
+#+end_src
+** Ansible
+#+begin_src emacs-lisp
+  (straight-use-package 'auto-complete)
+  (ac-config-default)
+  (straight-use-package 'ansible)
+  (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+  (straight-use-package 'ansible-doc)
+  (add-hook 'yaml-mode-hook #'ansible-doc-mode)
+  (straight-use-package 'company-ansible)
+  (add-to-list 'company-backends 'company-ansible)
+#+end_src
+
+** Adwaita-Dark-Theme
+#+begin_src emacs-lisp
+  (straight-use-package 'abyss-theme)
+  (load-theme #'abyss t)
+#+end_src
+
+** Adwaita-Dark-Theme
+#+begin_src emacs-lisp
+  (straight-use-package 'yaml-mode)
+  (require 'yaml-mode)
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+#+end_src
+** Nix-Mode
+#+begin_src emacs-lisp
+  (straight-use-package 'nix-mode)
+  (require 'nix-mode)
+  (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+#+end_src
+** Ellama
+#+begin_src emacs-lisp
+  (straight-use-package 'ellama)
+  (require 'ellama)
+#+end_src
+
+** Evil
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package '(evil :host github :repo "emacs-evil/evil"))
+  (use-package evil
+  :config (evil-mode t))
+#+END_SRC
+
+
+* Org
+** Enable Snippets
+#+begin_src emacs-lisp
+  (require 'org-tempo)
+#+end_src
+** Contacts Importer/Creation
+# #+BEGIN_SRC emacs-lisp
+#   (straight-use-package 'org-contrib)
+# #+END_SRC
+# #+begin_src emacs-lisp
+#   (defvar capture-person-at-point-properties)
+
+#   (defun capture-person-at-point ()
+#     "If your lost its in your emacs.org"
+#     (interactive)
+#     (let ((properties (org-entry-properties)))
+#       (setq capture-person-at-point-properties properties)))
+
+#   (defun get-person-property (key)
+#     (alist-get key capture-person-at-point-properties nil nil #'string=))
+# #+end_src
+# #+begin_src emacs-lisp
+#   ;; Helpers
+#   (defvar org-capture-arg nil
+#     "Variable to be used as 'argument' for org capture templates.")
+
+#   (defun ne/get-property (key list)
+#     (alist-get key list nil nil #'string=))
+
+#   ;; `ne/create-node-for-contact-at-point' settings
+#   (defvar ne/contact-list-link
+#     "[[file:~/org/roam/20210905004836-people.org::*This is a people file.][This is a people file.]]")
+#   (defvar ne/contact-capture-template)
+#   (setq ne/contact-capture-template
+#         '("p" "Person" plain
+#           "\nPhone Number: %(ne/get-property \"CELL\" org-capture-arg)\nAge:\nBirthday:\nLast Called:\nNotes:"
+#           :empty-lines-before 1
+#           :if-new
+#           (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}")
+#           :unnarrowed t))
+
+#   ;; user facing function
+#   (defun ne/create-node-for-contact-at-point ()
+#     "Create a new org-roam node for the contact under point, using `ne/contact-capture-template'"
+#     (interactive)
+#     (let* ((org-capture-arg (org-entry-properties))
+#            (title (ne/get-property "ITEM" org-capture-arg)))
+#       (org-roam-capture-
+#        :goto nil
+#        :info nil
+#        :keys "p"
+#        :templates (list ne/contact-capture-template)
+#        :node (org-roam-node-create :title title)
+#        :props `(:immediate-finish nil
+#                                   :link-description ,title))))
+
+#   ;; finalizer
+#   (defun ne/create-contact-finalizer ()
+#     "Function to run after `ne/create-node-for-contact-at-point' to
+#             insert a link to the new node in the contact list linked in `ne/contact-list-link'."
+#     (when (string= (plist-get org-capture-plist :description)
+#                    (nth 1 ne/contact-capture-template))
+#       (save-excursion
+#         (org-open-link-from-string ne/contact-list-link)
+#         (goto-char (line-end-position))
+#         (org-insert-subheading nil)
+#         (insert
+#          (org-link-make-string (concat "id:" (org-roam-capture--get :id))
+#                                (org-roam-capture--get :link-description)))
+#         (org-up-element)
+#         (org-sort-entries nil ?a) ;; sort alphabetically
+#         )))
+
+#   (add-hook 'org-capture-after-finalize-hook
+#             #'ne/create-contact-finalizer)
+# #+end_src
+
+#+RESULTS:
+| ne/create-contact-finalizer |
+
+** Org Roam
+Emacs Org Roam Install
+Emacs Org UI
+
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'org-roam)
+  (straight-use-package 'org-roam-ui)
+#+END_SRC
+# Org Roam Directory & Setup
+#+begin_src emacs-lisp
+  (setq org-roam-directory (file-truename "~/org/roam"))
+  (setq org-roam-v2-ack t)
+  (org-roam-db-autosync-mode)
+#+end_src
+# Org Roam Delete
+#+begin_src emacs-lisp
+  (cl-defun org-roam-node-delete (&optional other-window initial-input filter-fn &key templates)
+    "Find and delete an Org-roam node by its title or alias.
+  INITIAL-INPUT is the initial input for the prompt.
+  FILTER-FN is a function to filter out nodes: it takes an `org-roam-node',
+  and when nil is returned the node will be filtered out.
+  If OTHER-WINDOW, visit the NODE in another window.
+  The TEMPLATES, if provided, override the list of capture templates (see
+  `org-roam-capture-'.)"
+    (interactive current-prefix-arg)
+    (let ((node (org-roam-node-read initial-input filter-fn)))
+      (when (org-roam-node-file node)
+        (delete-file (org-roam-node-file node)))))
+#+end_src
+
+** Org Bookmarks Autosave
+#+begin_src emacs-lisp
+  (setq org-capture-bookmark nil)
+#+end_src
+
+** Org Folded Headers
+#+begin_src emacs-lisp
+  (setq org-startup-folded 'content)
+#+end_src
+
+** Org Journal
+#+begin_src emacs-lisp
+  (straight-use-package 'org-journal)
+  (require 'org-journal)
+  (setq org-journal-dir "~/dotfiles/emacs-journal/")
+#+end_src
