@@ -537,9 +537,11 @@ Remove some unneeded backends
 
 ** Evil
 #+BEGIN_SRC emacs-lisp
-  (straight-use-package '(evil :host github :repo "emacs-evil/evil"))
-  (use-package evil
-  :config (evil-mode t))
+  (use-package evil-collection
+  :after (evil)
+  :straight (evil-collection :type git
+  :host github
+  :repo "emacs-evil/evil-collection"))
 #+END_SRC
 
 
