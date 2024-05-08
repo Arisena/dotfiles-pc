@@ -537,10 +537,16 @@ Remove some unneeded backends
 
 ** Evil
 #+BEGIN_SRC emacs-lisp
-    (straight-use-package '(evil :host github :repo "emacs-evil/evil"))
-    (require 'evil)
-    (use-package evil
-    :config (evil-mode t))
+  (straight-use-package '(evil :host github :repo "emacs-evil/evil"))
+  (require 'evil)
+  (use-package evil
+  :config (evil-mode t))
+#+END_SRC
+
+** Typescript
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'typescript-mode)
+  (require 'typescript-mode)
 #+END_SRC
 
 
