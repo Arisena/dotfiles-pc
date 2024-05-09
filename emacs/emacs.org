@@ -549,6 +549,11 @@ Remove some unneeded backends
   (require 'typescript-mode)
 #+END_SRC
 
+** Markdown
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package 'markdown-mode)
+#+END_SRC
+
 
 * Org
 ** Enable Snippets
