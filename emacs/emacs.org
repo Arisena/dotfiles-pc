@@ -203,6 +203,10 @@ Rebind C-z
   (setq blink-cursor-delay 0.2)
 #+end_src
 
+** Set Global Line Number
+#+BEGIN_SRC emacs-lisp
+  (global-display-line-numbers-mode 1)
+#+END_SRC
 * New C+F
 ** Vertico
 
@@ -541,7 +545,6 @@ Remove some unneeded backends
   (require 'evil)
   (use-package evil
   :config (evil-mode t))
-  (global-display-line-numbers-mode 1)
 #+END_SRC
 
 ** Typescript
