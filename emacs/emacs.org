@@ -539,14 +539,6 @@ Remove some unneeded backends
   (require 'ellama)
 #+end_src
 
-** Evil
-#+BEGIN_SRC emacs-lisp
-  ;(straight-use-package '(evil :host github :repo "emacs-evil/evil"))
-  ;(require 'evil)
-  ;(use-package evil
-  ;:config (evil-mode t))
-#+END_SRC
-
 ** Typescript
 #+BEGIN_SRC emacs-lisp
   (straight-use-package 'typescript-mode)
@@ -564,81 +556,6 @@ Remove some unneeded backends
 #+begin_src emacs-lisp
   (require 'org-tempo)
 #+end_src
-** Contacts Importer/Creation
-# #+BEGIN_SRC emacs-lisp
-#   (straight-use-package 'org-contrib)
-# #+END_SRC
-# #+begin_src emacs-lisp
-#   (defvar capture-person-at-point-properties)
-
-#   (defun capture-person-at-point ()
-#     "If your lost its in your emacs.org"
-#     (interactive)
-#     (let ((properties (org-entry-properties)))
-#       (setq capture-person-at-point-properties properties)))
-
-#   (defun get-person-property (key)
-#     (alist-get key capture-person-at-point-properties nil nil #'string=))
-# #+end_src
-# #+begin_src emacs-lisp
-#   ;; Helpers
-#   (defvar org-capture-arg nil
-#     "Variable to be used as 'argument' for org capture templates.")
-
-#   (defun ne/get-property (key list)
-#     (alist-get key list nil nil #'string=))
-
-#   ;; `ne/create-node-for-contact-at-point' settings
-#   (defvar ne/contact-list-link
-#     "[[file:~/org/roam/20210905004836-people.org::*This is a people file.][This is a people file.]]")
-#   (defvar ne/contact-capture-template)
-#   (setq ne/contact-capture-template
-#         '("p" "Person" plain
-#           "\nPhone Number: %(ne/get-property \"CELL\" org-capture-arg)\nAge:\nBirthday:\nLast Called:\nNotes:"
-#           :empty-lines-before 1
-#           :if-new
-#           (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}")
-#           :unnarrowed t))
-
-#   ;; user facing function
-#   (defun ne/create-node-for-contact-at-point ()
-#     "Create a new org-roam node for the contact under point, using `ne/contact-capture-template'"
-#     (interactive)
-#     (let* ((org-capture-arg (org-entry-properties))
-#            (title (ne/get-property "ITEM" org-capture-arg)))
-#       (org-roam-capture-
-#        :goto nil
-#        :info nil
-#        :keys "p"
-#        :templates (list ne/contact-capture-template)
-#        :node (org-roam-node-create :title title)
-#        :props `(:immediate-finish nil
-#                                   :link-description ,title))))
-
-#   ;; finalizer
-#   (defun ne/create-contact-finalizer ()
-#     "Function to run after `ne/create-node-for-contact-at-point' to
-#             insert a link to the new node in the contact list linked in `ne/contact-list-link'."
-#     (when (string= (plist-get org-capture-plist :description)
-#                    (nth 1 ne/contact-capture-template))
-#       (save-excursion
-#         (org-open-link-from-string ne/contact-list-link)
-#         (goto-char (line-end-position))
-#         (org-insert-subheading nil)
-#         (insert
-#          (org-link-make-string (concat "id:" (org-roam-capture--get :id))
-#                                (org-roam-capture--get :link-description)))
-#         (org-up-element)
-#         (org-sort-entries nil ?a) ;; sort alphabetically
-#         )))
-
-#   (add-hook 'org-capture-after-finalize-hook
-#             #'ne/create-contact-finalizer)
-# #+end_src
-
-#+RESULTS:
-| ne/create-contact-finalizer |
-
 ** Org Roam
 Emacs Org Roam Install
 Emacs Org UI
