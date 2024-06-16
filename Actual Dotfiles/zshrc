@@ -24,6 +24,7 @@ SAVEHIST=500
 #export EDITOR=/usr/bin/nano
 #export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+export EDITOR=vim
 
 export PATH="$PATH:/home/ari/.config/emacs/bin"
 
@@ -110,7 +111,7 @@ setopt prompt_subst
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Prompt (on left side) similar to default bash prompt, or redhat zsh prompt with colors
- #PROMPT="%(!.%{$fg[red]%}[%n: %1~]%{$reset_color%}# .%{$fg[cyan]%}[%n: %1~]%{$reset_color%}$ "
+#PROMPT="%(!.%{$fg[red]%}[%n: %1~]%{$reset_color%}# .%{$fg[cyan]%}[%n: %1~]%{$reset_color%}$ "
 # Maia prompt
 ZSH_THEME="agnoster"
 # Print a greeting message when shell is started
