@@ -194,6 +194,10 @@ Rebind C-z
   (general-define-key
    "C-x 7" 'vterm-other-window)
 #+end_src
+#+begin_src emacs-lisp
+  (general-define-key
+   "C-c )" 'org-roam-node-insert)
+#+end_src
 ** Brower Setup
 #+begin_src emacs-lisp
   (setq browse-url-generic-program "firefox")
