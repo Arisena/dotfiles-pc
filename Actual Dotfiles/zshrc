@@ -77,7 +77,7 @@ alias tarxz="tar -cv -I 'xz -9 -T0' -f"
 #
 alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ Ltd/Vortex/Vortex.exe"
 
-#Function for upgrading system
+#Function for upgrading system REPLACED BY TOPGRADE
 #upgrade(){
 #  echo "Starting Upgrade Procedure..."
 #  sudo pacman -Syu --noconfirm
@@ -90,7 +90,7 @@ alias vortex="wine /home/ari/.wine/drive_c/Program\ Files/Black\ Tree\ Gaming\ L
 #  echo "\nUPDATE COMPLETED"
 #}
 
-#Used to create Email Alias on my email server box.atswarra.com
+#Used to create Email Alias on my email server
 email-alias-create() {
 	curl -X POST -d "address=$1" -d "forwards_to=$EMAIL" --user $(sudo -E cat /root/.domain-creds) https://$MAILSERVER/admin/mail/aliases/add
 }
