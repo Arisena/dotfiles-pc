@@ -199,12 +199,18 @@ export LESS=-r
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+export FZF_DEFAULT_OPTS="--color=fg:-1,bg:-1,hl:3,fg+:12,bg+:235,hl+:6 --preview 'bat --style=numbers --color=always --line-range :100 {}' --color=16"
+export FZF_CTRL_T_OPTS="--preview 'ls --color=always -lh {}'"
+export FZF_COMPLETION_OPTS="--color=always"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Apply different settigns for different terminals
 case $(basename "$(cat "/proc/$PPID/comm")") in
