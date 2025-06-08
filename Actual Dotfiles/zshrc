@@ -71,6 +71,9 @@ alias kicat="kitty +kitten icat" # Display image inside terminal
 alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox" # Download from Twitter or YouTube
 alias tarxz="tar -cv -I 'xz -9 -T0' -f"
 
+#Remoting into Extreme Network Switch
+alias extremessh='ssh -i .ssh/sub_rsa_2048_sha1 -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedAlgorithms=+ssh-rsa'
+
 [ "$TERM" = "xterm" ] && alias ssh="kitty +kitten ssh"
 
 # Wine Program Aliases
