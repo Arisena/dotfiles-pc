@@ -61,18 +61,12 @@ let g:airline_symbols_linenr = ''
 
 call vundle#end()
 
-" smart-indent blank line after inserting an opening brace
-function! IndentAfterOpeningBrace()
-  " the blank line is the current line; the opening-brace line is the previous non-blank
+function! IndentInsidePair(open, close)
+  " same indent logic you already had
   let lnum_open = prevnonblank(line('.') - 1)
-  if lnum_open <= 0
-    let base = 0
-  else
-    let base = indent(lnum_open)
-  endif
+  let base = lnum_open > 0 ? indent(lnum_open) : 0
   let target = base + &shiftwidth
 
-  " build indent string respecting 'expandtab' and 'tabstop'
   if &expandtab
     let s = repeat(' ', target)
   else
@@ -82,13 +76,13 @@ function! IndentAfterOpeningBrace()
     let s = repeat("\t", tabs) . repeat(' ', spaces)
   endif
 
-  " replace the blank line with indentation and put cursor after it
   call setline(line('.'), s)
   call cursor(line('.'), len(s) + 1)
 endfunction
 
-" filetypes you care about — add/remove filetypes as needed
-autocmd FileType c,cpp,java,json,javascript,typescript inoremap <buffer> { {<CR><CR>}<Up><C-o>:call IndentAfterOpeningBrace()<CR>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" :
+\ (col('.') > 1 && getline('.')[col('.') - 2:col('.') - 1] =~# '[(\[{][)\]}]') ?
+\ "\<CR>\<CR>\<Up><C-o>:call IndentInsidePair('{','}')<CR>" : "\<CR>"
 
 set bg=dark
 "set t_Co=64
