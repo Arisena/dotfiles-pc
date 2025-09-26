@@ -32,7 +32,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Raimondi/delimitMate'
 let g:gruvbox_transparent_bg = 1
 Plugin 'morhetz/gruvbox'
-colorscheme gruvbox
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -89,6 +88,7 @@ set bg=dark
 "hi Normal guibg=NONE ctermbg=NONE
 
 syntax on
+colorscheme gruvbox
 
 set encoding=utf-8
 set mouse=a
