@@ -226,3 +226,10 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 		[[ "$PS1" ]] && echo -e "\e[00;36m$(/usr/bin/fortune)\e[00m"
     ;;
 esac
+
+# bun completions
+[ -s "/home/ari/.bun/_bun" ] && source "/home/ari/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
