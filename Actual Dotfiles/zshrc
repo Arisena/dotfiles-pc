@@ -71,6 +71,8 @@ alias kicat="kitty +kitten icat" # Display image inside terminal
 alias twitter-dl="yt-dlp -vU --cookies-from-browser firefox" # Download from Twitter or YouTube
 alias tarxz="tar -cv -I 'xz -9 -T0' -f"
 
+#alias fastfetch="fastfetch --logo-type kitty-direct --logo /home/ari/Pictures/megu.png --logo-width 40 --logo-height 28"
+
 #Remoting into Extreme Network Switch
 alias extremessh='ssh -i .ssh/sub_rsa_2048_sha1 -oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedAlgorithms=+ssh-rsa'
 
@@ -226,10 +228,3 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 		[[ "$PS1" ]] && echo -e "\e[00;36m$(/usr/bin/fortune)\e[00m"
     ;;
 esac
-
-# bun completions
-[ -s "/home/ari/.bun/_bun" ] && source "/home/ari/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
